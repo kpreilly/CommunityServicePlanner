@@ -1,20 +1,32 @@
-var url = "";
+var url = "http://flip1.engr.oregonstate.edu:8082/";
 document.addEventListener("DOMContentLoaded", bindButtons);
+document.addEventListener("DOMContentLoaded", bindUsernameField);
+document.addEventListener("DOMContentLoaded", bindEmailField);
 document.addEventListener("DOMContentLoaded", bindPasswordField);
 document.addEventListener("DOMContentLoaded", bindConfirmPasswordField);
 
-function doPasswordsMatch() {
-    var password = document.getElementById("inputPassword").value;
-    var confPassword = document.getElementById("inputConfirmPassword").value;
+function doPasswordsMatch(password, confPassword) {
     if (password === confPassword) {
         return true;
     }
     return false;
 }
 
+// Function source cited: https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
+function isValidEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
 function bindButtons() {
     document.getElementById("submitBtn").addEventListener("click", function(event) {
-        if (doPasswordsMatch()) {
+        var username = document.getElementById("inputUsername").value;
+        var email = document.getElementById("inputEmail").value;
+        var passwordInput = document.getElementById("inputPassword").value;
+        var confirmPasswordInput = document.getElementById("inputConfirmPassword").value;
+        if (username !== "" && isValidEmail(email) && 
+            passwordInput !== "" && confirmPasswordInput !== "" &&
+            doPasswordsMatch(passwordInput, confirmPasswordInput)) {
             var req = new XMLHttpRequest();
             var payload = {};
             payload.type = "register";
@@ -40,8 +52,25 @@ function bindUsernameField() {
         var username = document.getElementById("inputUsername").value;
         if (username === "") {
             document.getElementById("inputUsername").classList.remove("is-invalid");
+            document.getElementById("inputUsername").classList.remove("is-valid");
         } else {
             document.getElementById("inputUsername").classList.add("is-valid");
+        }
+    });
+}
+
+function bindEmailField() {
+    document.getElementById("inputEmail").addEventListener("input", function(event) {
+        var email = document.getElementById("inputEmail").value;
+        if (email === "") {
+            document.getElementById("inputEmail").classList.remove("is-invalid");
+            document.getElementById("inputEmail").classList.remove("is-valid");
+        } else if (isValidEmail(email)) {
+            document.getElementById("inputEmail").classList.remove("is-invalid");
+            document.getElementById("inputEmail").classList.add("is-valid");
+        } else {
+            document.getElementById("inputEmail").classList.remove("is-valid");
+            document.getElementById("inputEmail").classList.add("is-invalid");
         }
     });
 }
@@ -53,7 +82,7 @@ function bindPasswordField() {
         if (passwordInput === "" && confirmPasswordInput === "") {
             document.getElementById("inputConfirmPassword").classList.remove("is-invalid");
             document.getElementById("inputConfirmPassword").classList.remove("is-valid"); 
-        } else if (doPasswordsMatch()) {
+        } else if (doPasswordsMatch(passwordInput, confirmPasswordInput)) {
             document.getElementById("inputConfirmPassword").classList.remove("is-invalid");
             document.getElementById("inputConfirmPassword").classList.add("is-valid");
         } else {
@@ -69,7 +98,7 @@ function bindConfirmPasswordField() {
         if (passwordInput === "" && confirmPasswordInput === "") {
             document.getElementById("inputConfirmPassword").classList.remove("is-invalid");
             document.getElementById("inputConfirmPassword").classList.remove("is-valid");
-        } else if (doPasswordsMatch()) {
+        } else if (doPasswordsMatch(passwordInput, confirmPasswordInput)) {
             document.getElementById("inputConfirmPassword").classList.remove("is-invalid");
             document.getElementById("inputConfirmPassword").classList.add("is-valid");
         } else {
