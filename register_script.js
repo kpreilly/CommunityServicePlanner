@@ -1,4 +1,4 @@
-var url = "http://flip1.engr.oregonstate.edu:8082/";
+var url = "http://localhost:8082/register";
 document.addEventListener("DOMContentLoaded", bindButtons);
 document.addEventListener("DOMContentLoaded", bindUsernameField);
 document.addEventListener("DOMContentLoaded", bindEmailField);
