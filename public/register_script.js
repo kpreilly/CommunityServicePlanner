@@ -39,6 +39,8 @@ function bindButtons() {
             req.addEventListener("load", function() {
                 if (req.status >= 200 && req.status < 400) {
                     window.location.href="./login.html";
+                } else {
+                    alert("Username or Email Already Exists");
                 }
             });
             req.send(JSON.stringify(payload)); 
