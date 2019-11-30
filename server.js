@@ -1,24 +1,29 @@
 var path = require('path');
 var express = require('express');
+var bodyParser = require('body-parser');
 
 var app = express();
+app.use(bodyParser.json());
 var userData = require('./users.json');
 
 app.post('/login', function(req,res,next){
-    var param = req.params.cred;
-    console.log("Posted:", param);
-    /*
-        Verify credentials
-        if(userData[username]){
-            if(userData[username].oasswird === password){
-                res.status(200).send("Logged in");
-            }
+    // Get usename and password from request body    
+    var username = req.body.username;
+    var password = req.body.password
+    // Verify credentials
+    if(userData[username]){
+        if(userData[username].password === password){
+            res.status(200).send(username + " logged in.");
         }
+        // Return password error
         else{
-            res.status(401).send("User DNE");
+            res.status(401).send(username + ", wrong password.");
         }
-    */
-    res.status(200).send("DONE");
+    }
+    // Else return failure
+    else{
+        res.status(404).send("User, " + username + ", DNE.");
+    }
 });
 
 // Present html 
