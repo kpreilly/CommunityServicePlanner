@@ -1,6 +1,7 @@
 var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
+var fs = require('fs');
 
 var app = express();
 app.use(bodyParser.json());
@@ -13,7 +14,15 @@ app.post('/login', function(req,res,next){
     // Verify credentials
     if(userData[username]){
         if(userData[username].password === password){
-            res.status(200).send(username + " logged in.");
+            userData[username].loggedin = 1;
+            fs.writeFile('users.json', JSON.stringify(userData), (error, result)=>{
+                if(!error){
+                    res.status(200).send(username + " logged in.");
+                }
+                else{
+                    res.status(400).send("Error logging in " + username);
+                }
+            }); 
         }
         // Return password error
         else{

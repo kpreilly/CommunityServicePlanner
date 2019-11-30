@@ -6,6 +6,11 @@ function authenticate(){
     var username = document.getElementById('uname').value;
     var password = document.getElementById('pass').value;
     
+    if((username === '')||(password === '')){
+        alert("No empty fields!");
+        return false;
+    }
+    
     // Url for post
     var url = '/login/';
     req.open('POST', url);
