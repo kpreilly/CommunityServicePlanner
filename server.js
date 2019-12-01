@@ -34,6 +34,24 @@ app.post('/login', function(req,res,next){
     }
 });
 
+app.post('/logout', (req, res)=>{
+    let username = req.body.username;
+    let loggedout = 0;
+    userData.users.forEach((user)=> {
+        if(user["username"] === username){
+            user["loggedin"] = 0;
+            loggedout = 1;
+        }
+    })
+    if(loggedout){
+        res.status(200).send("Logged out " + username);
+    }
+    else{
+        res.status(400).send("Username not found"); 
+    }
+
+});
+
 app.post('/register', (req, res) => {
     let obj = {};
     obj.username = req.body.username;
@@ -66,9 +84,14 @@ app.post('/register', (req, res) => {
     }
 });
 
+// temporary get request for home page
+app.get('/home', (req, res)=>{
+   res.status(200).sendFile(__dirname + '/public/logout.html')
+});
+
 // Present html 
 app.get('/', function(req, res, next){
-    res.status(200).sendFile(__dirname + '/public/index.html');
+    res.status(200).sendFile(__dirname + '/public/login.html');
 });
 
 // Serve all resources in public
