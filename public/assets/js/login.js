@@ -1,10 +1,10 @@
-var form = document.getElementById('login');
+let form = document.getElementById('login');
 
 function authenticate(){
     // Open xml request
-    var req = new XMLHttpRequest();
-    var username = document.getElementById('uname').value;
-    var password = document.getElementById('pass').value;
+    let req = new XMLHttpRequest();
+    let username = document.getElementById('uname').value;
+    let password = document.getElementById('pass').value;
     
     if((username === '')||(password === '')){
         alert("No empty fields!");
@@ -12,19 +12,20 @@ function authenticate(){
     }
     
     // Url for post
-    var url = '/login/';
+    let url = '/login/';
     req.open('POST', url);
 
-    var cred ={
+    let cred ={
         username,
         password
     };
-    var body = JSON.stringify(cred);
+    let body = JSON.stringify(cred);
 
     // Alert return 
     req.addEventListener('load', (event)=>{
         if(event.target.status === 200){
-            alert(event.target.response);
+            localStorage.setItem('user', username);
+            window.location.href="./logout.html";
         }
         else{
             alert(event.target.response);

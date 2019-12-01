@@ -38,7 +38,7 @@ function bindButtons() {
             req.setRequestHeader("Content-Type", "application/json");
             req.addEventListener("load", function(event) {
                 if (req.status >= 200 && req.status < 400) {
-                    window.location.href="./index.html";
+                    window.location.href="./login.html";
                 } else {
                     alert(event.target.response);
                 }
