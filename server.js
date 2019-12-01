@@ -11,24 +11,23 @@ app.post('/login', function(req,res,next){
     // Get usename and password from request body    
     var username = req.body.username;
     var password = req.body.password
-    // Verify credentials
+
+    // Verify credentials;
     var loginSuccessful = false;
-    userData.users.forEach(user => {
-        if (user["username"] === username && user["password"] === password ) {
-            user["loggedin"] = 1;
-            loginSuccessful = true;
-        }
-    });
-    // If logged in, update json file
+    if (userData[username] && userData[username].password === password) {
+        userData[username].loggedin = 1;
+        loginSuccessful = true;
+    }
+
+    //If logged in, update json file
     if (loginSuccessful) {
-        fs.writeFile('users.json', JSON.stringify(userData), (error, result)=>{
-            if(!error){
+        fs.writeFile('users.json', JSON.stringify(userData), (err, result) => {
+            if (!err) {
                 res.status(200).send(username + " logged in");
-            }
-            else{
+            } else {
                 res.status(400).send("Error logging in " + username);
             }
-        }); 
+        });
     } else {
         res.status(401).send("Invalid username and/or password");
     }
@@ -53,30 +52,34 @@ app.post('/logout', (req, res)=>{
 });
 
 app.post('/register', (req, res) => {
-    let obj = {};
-    obj.username = req.body.username;
-    obj.email = req.body.email;
-    obj.password = req.body.password;
-    obj.loggedin = 0;
+    // Get usename and password from request body 
+    let username = req.body.username;
+    let email = req.body.email
 
+    // Verify username and email don't exist
     let usernameExists = false;
     let emailExists = false;
-    userData.users.forEach(user => {
-        if (user["username"] === obj["username"]) {
-            usernameExists = true;
+    if (userData[username]) {
+        usernameExists = true;
+    } else {
+        for (const user in userData) {
+            if (userData[user].email === email) {
+                emailExists = true;
+            }
         }
-        if (user["email"] === obj["email"]) {
-            emailExists = true;
-        }
-    });
+    }
 
+    // If username and email don't exist, add user
     if (!usernameExists && !emailExists) {
-        userData.users.push(obj);
+        userData[username] = {};
+        userData[username].email = email;
+        userData[username].password = req.body.password;
+        userData[username].loggedin = 0;
         fs.writeFile('users.json', JSON.stringify(userData), (err) => {
             if (err) {
-                res.status(400).send("Error registering " + obj.username);
+                res.status(400).send("Error registering " + username);
             } else {
-                res.status(200).send(obj.username + " has been successfully registered");
+                res.status(200).send(username + " has been successfully registered");
             }
         });
     } else {
