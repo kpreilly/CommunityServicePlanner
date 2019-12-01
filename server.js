@@ -1,19 +1,19 @@
-var path = require('path');
-var express = require('express');
-var bodyParser = require('body-parser');
-var fs = require('fs');
+let path = require('path');
+let express = require('express');
+let bodyParser = require('body-parser');
+let fs = require('fs');
 
-var app = express();
+let app = express();
 app.use(bodyParser.json());
-var userData = require('./users.json');
+let userData = require('./users.json');
 
 app.post('/login', function(req,res,next){
     // Get usename and password from request body    
-    var username = req.body.username;
-    var password = req.body.password
+    let username = req.body.username;
+    let password = req.body.password
 
     // Verify credentials;
-    var loginSuccessful = false;
+    let loginSuccessful = false;
     if (userData[username] && userData[username].password === password) {
         userData[username].loggedin = 1;
         loginSuccessful = true;
@@ -36,12 +36,10 @@ app.post('/login', function(req,res,next){
 app.post('/logout', (req, res)=>{
     let username = req.body.username;
     let loggedout = 0;
-    userData.users.forEach((user)=> {
-        if(user["username"] === username){
-            user["loggedin"] = 0;
-            loggedout = 1;
-        }
-    })
+    if(userData[username]){
+        userData[username].loggedin = 0;
+        loggedout = 1;
+    }
     if(loggedout){
         res.status(200).send("Logged out " + username);
     }
