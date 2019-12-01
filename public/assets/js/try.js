@@ -39,3 +39,8 @@ form.addEventListener('submit', (event) =>{
     event.preventDefault();
     authenticate();
 });
+
+document.getElementById('registerBtn').addEventListener('click', (event) => {
+    event.preventDefault();
+    window.location.href="./register.html";
+})

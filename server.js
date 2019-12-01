@@ -12,26 +12,57 @@ app.post('/login', function(req,res,next){
     var username = req.body.username;
     var password = req.body.password
     // Verify credentials
-    if(userData[username]){
-        if(userData[username].password === password){
-            userData[username].loggedin = 1;
-            fs.writeFile('users.json', JSON.stringify(userData), (error, result)=>{
-                if(!error){
-                    res.status(200).send(username + " logged in.");
-                }
-                else{
-                    res.status(400).send("Error logging in " + username);
-                }
-            }); 
+    var loginSuccessful = false;
+    userData.users.forEach(user => {
+        if (user["username"] === username && user["password"] === password ) {
+            user["loggedin"] = 1;
+            loginSuccessful = true;
         }
-        // Return password error
-        else{
-            res.status(401).send(username + ", wrong password.");
-        }
+    });
+    // If logged in, update json file
+    if (loginSuccessful) {
+        fs.writeFile('users.json', JSON.stringify(userData), (error, result)=>{
+            if(!error){
+                res.status(200).send(username + " logged in");
+            }
+            else{
+                res.status(400).send("Error logging in " + username);
+            }
+        }); 
+    } else {
+        res.status(401).send("Invalid username and/or password");
     }
-    // Else return failure
-    else{
-        res.status(404).send("User, " + username + ", DNE.");
+});
+
+app.post('/register', (req, res) => {
+    let obj = {};
+    obj.username = req.body.username;
+    obj.email = req.body.email;
+    obj.password = req.body.password;
+    obj.loggedin = 0;
+
+    let usernameExists = false;
+    let emailExists = false;
+    userData.users.forEach(user => {
+        if (user["username"] === obj["username"]) {
+            usernameExists = true;
+        }
+        if (user["email"] === obj["email"]) {
+            emailExists = true;
+        }
+    });
+
+    if (!usernameExists && !emailExists) {
+        userData.users.push(obj);
+        fs.writeFile('users.json', JSON.stringify(userData), (err) => {
+            if (err) {
+                res.status(400).send("Error registering " + obj.username);
+            } else {
+                res.status(200).send(obj.username + " has been successfully registered");
+            }
+        });
+    } else {
+        res.status(400).send("Username and/or email already exist");
     }
 });
 
