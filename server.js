@@ -40,13 +40,17 @@ app.post('/logout', (req, res)=>{
         userData[username].loggedin = 0;
         loggedout = 1;
     }
-    if(loggedout){
-        res.status(200).send("Logged out " + username);
-    }
     else{
         res.status(400).send("Username not found"); 
     }
-
+    fs.writeFile('users.json', JSON.stringify(userData), (err) => {
+        if(err){
+            res.status(400).send("Error registering " + username);
+        }
+        else{            
+            res.status(200).send("Logged out " + username);
+        }
+    });
 });
 
 app.post('/register', (req, res) => {
