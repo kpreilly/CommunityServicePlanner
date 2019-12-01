@@ -5,3 +5,4 @@ This project works with node.js
 # Installation Instructions
 * npm install
 * npm start (or node server.js)
+* In a browser go to: __localhost:3000__
