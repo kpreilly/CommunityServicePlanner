@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>DCSP - View Events</title>
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aleo">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiko">
+        <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+        <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
+        <link rel="stylesheet" href="assets/css/styles.css">
+    </head>
+
+    <body>
+        <div class="login-clean" style="height: 100%;">
+            <form id="register" style="padding: 9px;">
+                <div class="illustration" style="padding: 0;"><i class="icon ion-ios-clock"></i>
+                    <h1 class="shadow-none" style="font-size: 23px;font-family: Aleo, serif;">Create An Event</h1>
+                </div>
+                <div class="form-group"><input class="form-control" type="text" id="inputTitle" name="title" placeholder="Event Title"></div>
+                <div class="form-group"><input class="form-control" type="text" id="inputLocation" name="location" placeholder="Event Location"></div>
+                <div class="form-group"><input class="form-control" type="text" id="inputLocation" name="location" placeholder="Description"></div>
+                <div class="form-group"><input class="form-control" type="text" id="inputLocation" name="location" placeholder="Contact"></div>
+                <div class="form-group"><input class="form-control" type="text" id="inputLocation" name="location" placeholder="Notes"></div>
+    
+
+                <div class="form-group row">
+                    <label for="example-date-input" class="col-2 col-form-label">Date</label>
+                <div class="col-10">
+                    <input class="form-control" type="date" value="YYYY-MM-DD" id="example-date-input">
+                </div>
+                </div>
+               
+                <div class="form-group row">
+                    <label for="example-time-input" class="col-2 col-form-label">Start Time</label>
+                <div class="col-10">
+                    <input class="form-control" type="time" value="00:00:00" id="example-time-input">
+                </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-time-input" class="col-2 col-form-label">End Time</label>
+                <div class="col-10">
+                    <input class="form-control" type="time" value="00:00:00" id="example-time-input">
+                </div>
+                </div>
+
+                <div class="dropdown">
+                  <button class="btn btn-primary dropdown-toggle" style="margin: 16px, 0px;" style="padding: 9px;" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Event Type
+                  </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" type="button">Animal Welfare</button>
+                    <button class="dropdown-item" type="button">Community Cleanup</button>
+                    <button class="dropdown-item" type="button">Help for Seniors</button>
+                </div>
+                </div>
+
+                <div class="form-group" style="margin: 16px, 0px;"><button class="btn btn-primary btn-block" style="padding: 9px;" type="submit" id="submitBtn">Create Event</button></div>
+            </form>
+        </div>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/bs-init.js"></script>
+        <script src="assets/js/register.js"></script>
+    </body>
+</html>
