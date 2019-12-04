@@ -20,9 +20,9 @@
                 </div>
                 <div class="form-group"><input class="form-control" type="text" id="inputTitle" name="title" placeholder="Event Title"></div>
                 <div class="form-group"><input class="form-control" type="text" id="inputLocation" name="location" placeholder="Event Location"></div>
-                <div class="form-group"><input class="form-control" type="text" id="inputLocation" name="location" placeholder="Description"></div>
-                <div class="form-group"><input class="form-control" type="text" id="inputLocation" name="location" placeholder="Contact"></div>
-                <div class="form-group"><input class="form-control" type="text" id="inputLocation" name="location" placeholder="Notes"></div>
+                <div class="form-group"><input class="form-control" type="text" id="inputDescription" name="location" placeholder="Description"></div>
+                <div class="form-group"><input class="form-control" type="text" id="inputContact" name="location" placeholder="Contact"></div>
+                <div class="form-group"><input class="form-control" type="text" id="inputNotes" name="location" placeholder="Notes"></div>
     
 
                 <div class="form-group row">
@@ -35,27 +35,20 @@
                 <div class="form-group row">
                     <label for="example-time-input" class="col-2 col-form-label">Start Time</label>
                 <div class="col-10">
-                    <input class="form-control" type="time" value="00:00" id="example-time-input">
+                    <input class="form-control" type="time" value="00:00" id="time-start">
                 </div>
                 </div>
                 <div class="form-group row">
                     <label for="example-time-input" class="col-2 col-form-label">End Time</label>
                 <div class="col-10">
-                    <input class="form-control" type="time" value="00:00" id="example-time-input">
+                    <input class="form-control" type="time" value="00:00" id="time-end">
                 </div>
                 </div>
-
-                <div class="dropdown">
-                  <button class="btn btn-primary dropdown-toggle" style="margin: 16px, 0px;" style="padding: 9px;" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Event Type
-                  </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <button class="dropdown-item" type="button">Animal Welfare</button>
-                    <button class="dropdown-item" type="button">Community Cleanup</button>
-                    <button class="dropdown-item" type="button">Help for Seniors</button>
-                </div>
-                </div>
-
+                <select>
+                    <option class="dropdown-item" type="button">Animal Welfare</option>
+                    <option class="dropdown-item" type="button">Community Cleanup</option>
+                    <option class="dropdown-item" type="button">Help for Seniors</option>
+                </select>
                 <div class="form-group" style="margin: 16px, 0px;"><button class="btn btn-primary btn-block" style="padding: 9px;" type="submit" id="submitBtn">Create Event</button></div>
             </form>
         </div>
