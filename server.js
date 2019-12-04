@@ -6,6 +6,7 @@ let fs = require('fs');
 let app = express();
 app.use(bodyParser.json());
 let userData = require('./users.json');
+let eventData = require('./events.json');
 
 app.post('/login', function(req,res,next){
     // Get usename and password from request body    
@@ -88,6 +89,30 @@ app.post('/register', (req, res) => {
         res.status(400).send("Username and/or email already exist");
     }
 });
+
+app.post('/cevent', (req, res) => {
+    let nextEvent = eventData.total;
+    eventData.total = nextEvent+1;
+    eventData.events[nextEvent]={
+        title: req.body.title,
+        location: req.body.location,
+        description: req.body.description,
+        contact: req.body.contact,
+        notes: req.body.notes,
+        date: req.body.date,
+        start: req.body.start,
+        end: req.body.end,
+        type: req.body.type,
+    };
+    console.log(eventData.events[nextEvent]);
+    fs.writeFile('events.json', JSON.stringify(eventData), (err) => {
+        if (err) {
+            res.status(400).send("Error creating event " + req.body,type);
+        } else {
+            res.status(200).send("Event "+req.body.type+" created");
+        }
+    });
+})
 
 app.get('/create', (req, res)=>{
     res.status(200).sendFile(__dirname + '/public/createEvent.html')
