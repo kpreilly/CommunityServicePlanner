@@ -89,6 +89,10 @@ app.post('/register', (req, res) => {
     }
 });
 
+app.get('/create', (req, res)=>{
+    res.status(200).sendFile(__dirname + '/public/createEvent.html')
+});
+
 // temporary get request for home page
 app.get('/home', (req, res)=>{
    res.status(200).sendFile(__dirname + '/public/logout.html')
