@@ -90,6 +90,7 @@ app.post('/register', (req, res) => {
     }
 });
 
+// Write new event to JSON
 app.post('/cevent', (req, res) => {
     let nextEvent = eventData.total;
     eventData.total = nextEvent+1;
@@ -104,7 +105,7 @@ app.post('/cevent', (req, res) => {
         end: req.body.end,
         type: req.body.type,
     };
-    console.log(eventData.events[nextEvent]);
+    // Write new data to json
     fs.writeFile('events.json', JSON.stringify(eventData), (err) => {
         if (err) {
             res.status(400).send("Error creating event " + req.body,type);
@@ -113,7 +114,7 @@ app.post('/cevent', (req, res) => {
         }
     });
 })
-
+// temporarily serves createEvent
 app.get('/create', (req, res)=>{
     res.status(200).sendFile(__dirname + '/public/createEvent.html')
 });

@@ -13,8 +13,8 @@ function create(){
     let date = document.getElementById('example-date-input').value;
     let start = document.getElementById('time-start').value;
     let end = document.getElementById('time-end').value;
-    //let type= document.getElementsByClassName('inputLocation');
     let dropdown = document.getElementById('typeMenu');
+    // Get selected from dropdown
     let type = dropdown.options[dropdown.selectedIndex].text;
     // Event body
     let newEvent ={
@@ -28,7 +28,6 @@ function create(){
         end,
         type,
     }
-    console.log(newEvent);
     let body = JSON.stringify(newEvent);
 
     // Alert return 
