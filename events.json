@@ -1,0 +1,27 @@
+{
+    "total": 2,
+    "events":[
+        {
+            "title": "Dog Walking",
+            "location": "Portland",
+            "description": "Walk my dog for me",
+            "contactname": "Dogman",
+            "notes": "My dog hates walks",
+            "date": "2019-12-11",
+            "start": "13:00",
+            "end": "14:00",
+            "type": "Animal Welfare"
+        },
+        {
+            "title": "Canned Food Drive",
+            "location": "Eugene",
+            "description": "Collecting canned food",
+            "contactname": "Dude",
+            "notes": "Check the expiration date",
+            "date": "2019-12-23",
+            "start": "13:00",
+            "end": "16:00",
+            "type": "Community Welfare"
+        }
+    ]
+}
