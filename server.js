@@ -114,14 +114,24 @@ app.post('/cevent', (req, res) => {
         }
     });
 })
+
+app.get('/viewEvents', (req, res) => {
+    res.send(JSON.stringify(eventData));
+});
+
+// temporarily servers viewEvents
+app.get('/events', (req, res) => {
+    res.status(200).sendFile(__dirname + '/public/viewEvents.html');
+});
+
 // temporarily serves createEvent
 app.get('/create', (req, res)=>{
-    res.status(200).sendFile(__dirname + '/public/createEvent.html')
+    res.status(200).sendFile(__dirname + '/public/createEvent.html');
 });
 
 // temporary get request for home page
 app.get('/home', (req, res)=>{
-   res.status(200).sendFile(__dirname + '/public/logout.html')
+   res.status(200).sendFile(__dirname + '/public/logout.html');
 });
 
 // Present html 

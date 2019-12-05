@@ -1,0 +1,37 @@
+.pocDiv {
+    padding-left: 52%;
+}
+
+.eventImg {
+    width: 30%;
+}
+
+.profileSpan {
+    padding-left: 25%;
+}
+
+.profileImg {
+    width: 15%;
+    border-radius: 50%;
+}
+
+.label {
+    color: rgba(226, 85, 109);
+}
+
+.descDiv {
+    background-color: rgba(247, 249, 252);
+}
+
+.descText {
+    color: rgba(117, 124, 131);
+}
+
+.imgDiv {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.locImg {
+    padding: 9px;
+    width: 100%
+}
