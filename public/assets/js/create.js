@@ -14,6 +14,28 @@ function create(){
     let start = document.getElementById('time-start').value;
     let end = document.getElementById('time-end').value;
     let dropdown = document.getElementById('typeMenu');
+    
+    if(title==""){
+        alert("Title cannot be empty!")
+        return false;
+    }
+    if(location==""){
+        alert("Location cannot be empty!")
+        return false;
+    }
+    if(description==""){
+        alert("Description cannot be empty!")
+        return false;
+    }
+    if(contact==""){
+        alert("Contact cannot be empty!")
+        return false;
+    }
+    if(date==""){
+        alert("Date cannot be empty!")
+        return false;
+    }
+    
     // Get selected from dropdown
     let type = dropdown.options[dropdown.selectedIndex].text;
     // Event body
