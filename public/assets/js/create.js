@@ -56,7 +56,7 @@ function create(){
     req.addEventListener('load', (event)=>{
         if(event.target.status === 200){
             alert(event.target.response);
-            window.location.href="/";
+            window.location.href="/events";
         }
         else{
             alert(event.target.response);

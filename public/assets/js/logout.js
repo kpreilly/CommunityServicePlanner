@@ -30,3 +30,6 @@ logout.addEventListener('click', (event)=>{
 document.getElementById('create').addEventListener('click', ()=>{
     window.location.href="/create";
 })
+document.getElementById('view').addEventListener('click', ()=>{
+    window.location.href="/events";
+})
