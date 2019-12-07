@@ -94,11 +94,12 @@ app.post('/register', (req, res) => {
 app.post('/cevent', (req, res) => {
     let nextEvent = eventData.total;
     eventData.total = nextEvent+1;
+    console.log(req.body.contactname)
     eventData.events[nextEvent]={
         title: req.body.title,
         location: req.body.location,
         description: req.body.description,
-        contact: req.body.contact,
+        contactname: req.body.contactname,
         notes: req.body.notes,
         date: req.body.date,
         start: req.body.start,
